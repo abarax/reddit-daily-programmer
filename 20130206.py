@@ -44,14 +44,10 @@ import sys
 
 def convert_to_decimal(input, base):
 
-	print mapping_table
 	length = len(input)	
 	decimal_value = 0	
 	for (x, pos) in enumerate(range(length-1, -1, -1)):
-		print pos
-		print mapping_table.index(input[pos])
 		decimal_value +=  mapping_table.index(input[x]) * (pow(base, pos))	
-		print decimal_value
 	
 	return decimal_value
 
