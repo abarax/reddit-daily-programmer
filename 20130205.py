@@ -45,5 +45,35 @@ Note
 None
 '''
 
-if __name__ == '__main__':
-	print("Hello World")
+# Help from here http://stackoverflow.com/questions/375427/non-blocking-read-on-a-subprocess-pipe-in-python
+import sys
+from subprocess import PIPE, Popen
+from threading  import Thread
+from time import time
+from Queue import Queue, Empty
+
+def enqueue_input(input, queue):
+    for line in iter(input.readline, b''):
+        queue.put(line)
+    input.close()
+
+q = Queue()
+t = Thread(target=enqueue_input, args=(sys.stdin, q))
+t.daemon = True
+t.start()
+
+count = 0
+watch_time = 30
+now = int(time())
+
+while True:
+	try: 
+		line = q.get_nowait()
+	except Empty:
+		if ((int(time()) - now) % watch_time == 0):
+			count = 0
+	else:
+		if ((int(time()) - now) % watch_time == 0):
+			count = 0
+		count += 1
+		print count
