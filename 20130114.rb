@@ -25,14 +25,8 @@ class Problem_20130114
         end
         current_length = current_length + 1
       end
-
-
-
     end
-
-
   end
-
 
   def result
     @results

@@ -63,16 +63,8 @@ if __name__ == '__main__':
 
 	input_string = 'e1f1'
 	input_base = 25 
-	output = 'Coming Soon!'
 
 	decimal_input = convert_to_decimal(input_string, input_base)
 	
 	for base in range(2,65):
 		print ("base ", base, convert_decimal_to_base(decimal_input, base))
-
-
-
-
-
-			
-	
